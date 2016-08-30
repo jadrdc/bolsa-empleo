@@ -23,6 +23,14 @@ router.post('/updateCategory', function(req, resp) {
 
 });
 
+router.post('/deleteCategory', function(req, resp) {
+    var categoryController = new CategoryController();
+
+    categoryController.removeCategory(req, function(err, category) {
+        resp.redirect('/categories');
+    });
+
+}); 
 
 
 

@@ -14,6 +14,25 @@ $('#exampleModal').on('show.bs.modal', function(event) {
 $(document).ready(function() {
 
 
+
+    $("#removeCategory").click(function() {
+        var chkBoxArray = [];
+        $('#id:checked').each(function() {
+
+            chkBoxArray.push($(this).val());
+        });
+        alert (chkBoxArray);
+        $.post('/deleteCategory', {
+                categoryid: chkBoxArray
+            },
+            function(data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+
+
+    });
+
+
     $(function() {
         var form = $(".login-form");
 
@@ -27,34 +46,9 @@ $(document).ready(function() {
     });
 
 
-    /*
-
-        $("#removebook").click(function() {
-            if (confirm('Desea eliminar estos libros   del Inventario ?')) {
-
-
-                $("input:checkbox[name=id]:checked").each(function() {
-                    var id = $(this).val();
-                    $.post("/removebook", {
-                            _id: id
-                        },
-                        function(data, status) {});
-
-                    $(this).closest('tr').remove();
-
-                });
-            }
-        });*/
-
-
     $("#allcategories").click(function() {
-
-
         $("input:checkbox[name=id]").prop("checked", $('#allcategories').is(':checked'));
-
     });
-
-
 
     $("button:button[name=updateCategory]").click(function() {
         $("input:text[name=category]").empty();
@@ -68,13 +62,12 @@ $(document).ready(function() {
 
 
 
+
     $("#update").click(function() {
 
         $(function() {
             $('#exampleModal').modal('toggle');
         });
-
-
 
         $.post("/updateCategory", {
                 category: $("input:text[name=category]").val(),
@@ -83,9 +76,6 @@ $(document).ready(function() {
             function(data, status) {
                 console.log("Data: " + data + "\nStatus: " + status);
             });
-
-
-
     });
 
 

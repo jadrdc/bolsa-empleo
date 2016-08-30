@@ -6,8 +6,9 @@ const categoryRepository = function() {
     }
 
     var remove = function(id, next) {
-        CategorySchema.findOneAndRemove({
-            _id: id
+
+       CategorySchema.remove({
+            _id: {$in : id }
         }, next);
     }
 
