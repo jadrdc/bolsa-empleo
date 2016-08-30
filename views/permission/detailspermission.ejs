@@ -8,23 +8,23 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="exampleModalLabel">Actualizar Categoria</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">Actualizar Permiso</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/updateCategory">
+                    <form action="/updatePermission">
 
-                        <div class="form-group" <input type="hidden" name="categoryid" id="categoryid"  class="form-control" required="true" />
+                        <div class="form-group" <input type="hidden" name="permissionid" id="permissionid"  class="form-control" required="true" />
                 </div>
 
                 <div class="form-group">
-                    <label> Categoria</label>
-                    <input type="text" name="category" class="form-control" required="true" />
+                    <label> Permiso</label>
+                    <input type="text" name="permission" class="form-control" required="true" />
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="update">Guardar </button>
+                <button type="button" class="btn btn-primary" id="updatePermission">Guardar </button>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
 
 
         <div class="container padding 2000px ">
-            <h2>Categorias </h2>
+            <h2>Permiso </h2>
             <table class="table table-hover  table-bordered">
                 <thead>
                     <tr>
@@ -42,14 +42,14 @@
                         <th>
                              <input type="checkbox" id="allcategories" value="">
                         </th>
-                        <th>Categoria</th>
+                        <th>Permiso</th>
 
-                        <th>Modificar Categoria</th>
+                        <th>Modificar Permiso</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    <% category.forEach(function(value,index,arr){ %>
+                    <% permission.forEach(function(value,index,arr){ %>
 
 
                         <tr>
@@ -62,7 +62,7 @@
                             </td>
                             <td><label><%= arr[index].description%></label></td>
                             <td>
-                                <button type="button" class="btn btn-success" id="updateCategory" data-toggle="modal" name="updateCategory" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar Categoria</button>
+                                <button type="button" class="btn btn-success" id="updateCategory" data-toggle="modal" name="updatePermission" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar Permisos</button>
                             </td>
 
                         </tr>
@@ -72,8 +72,7 @@
                         <%  }) %>
                 </tbody>
             </table>
-            <a class="btn btn-default" href="/addCategory" role="button">Agregar Categoria &raquo;</a>
-            <button class="btn btn-danger" type="button" id="removeCategory"> Eliminar Categoria </button>
+            <a class="btn btn-default" href="/addPermission" role="button">Agregar Permiso &raquo;</a>
+            <button class="btn btn-danger" type="button" id="removePermission"> Eliminar Permisos </button>
             <a class="btn btn-default" href="/return" role="button">Regresar Pagina Anterior &raquo;</a>
-
         </div>
