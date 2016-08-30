@@ -8,7 +8,7 @@ router.get('/addPermission', function(req, resp) {
 router.post('/addPermission', function(req, resp) {
     var permissionController = new PermissionController();
     permissionController.createPermission(req.body.permission, function(err, permission) {
-        resp.redirect('/addPermission');
+        resp.redirect('/permission');
     });
 });
 
@@ -25,7 +25,7 @@ router.post('/updatePermission', function(req, resp) {
 router.post('/deletePermission', function(req, resp) {
     var permissionController = new PermissionController();
     permissionController.removePermission(req, function(err, permission) {
-        resp.redirect('/permission');
+      resp.redirect('/permission');
     });
 
 });

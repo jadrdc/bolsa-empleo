@@ -19,7 +19,7 @@ const PermissionController = function() {
 
     this.updatePermission = function(req, next) {
         var permissionrepo = new PermissionRepository();
-        categoryrepo.update(req.body._id, req.body.permission, next);
+        permissionrepo.update(req.body._id, req.body.permission, next);
     }
 
 
