@@ -21,7 +21,6 @@ $(document).ready(function() {
 
             chkBoxArray.push($(this).val());
         });
-        alert (chkBoxArray);
         $.post('/deleteCategory', {
                 categoryid: chkBoxArray
             },
@@ -31,6 +30,31 @@ $(document).ready(function() {
 
 
     });
+
+
+
+
+
+    $("#removePermission").click(function() {
+        var chkBoxArray = [];
+        $('#id:checked').each(function() {
+
+            chkBoxArray.push($(this).val());
+        });
+        $.post('/deletePermission', {
+                permissionid: chkBoxArray
+            },
+            function(data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+
+
+    });
+
+
+
+
+
 
 
     $(function() {
@@ -58,6 +82,13 @@ $(document).ready(function() {
 
     });
 
+    $("button:button[name=updatePermission]").click(function() {
+        $("input:text[name=permission]").empty();
+        $("input:text[name=permission]").val($(this).closest('tr').children('td:eq(2)').text());
+        $("#permissionid").val($(this).closest('tr').children('td:eq(0)').text());
+
+
+    });
 
 
 
@@ -77,6 +108,29 @@ $(document).ready(function() {
                 console.log("Data: " + data + "\nStatus: " + status);
             });
     });
+
+
+
+
+
+
+    $("#updatePermission").click(function() {
+
+        $(function() {
+            $('#exampleModal').modal('toggle');
+        });
+
+        $.post("/updatePermission", {
+                permission: $("input:text[name=permission]").val(),
+                _id: $("#permissionid").val()
+            },
+            function(data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+    });
+
+
+
 
 
 
