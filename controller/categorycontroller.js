@@ -23,6 +23,11 @@ const CategoryController = function() {
     }
 
 
+    this.removeCategory = function(req, next) {
+        var categoryrepo = new CategoryRepository();
+        categoryrepo.remove(req.body.categoryid, next);
+    }
+
 
 };
 

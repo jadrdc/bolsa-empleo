@@ -1,30 +1,32 @@
-const CategorySchema = require('../models/category');
-const categoryRepository = function() {
+const PermissionSchema = require('../models/permission');
+const PermissionRepository = function() {
 
-    var save = function(category, next) {
-        category.save(next);
+    var save = function(permission, next) {
+        permission.save(next);
     }
 
     var remove = function(id, next) {
 
-       CategorySchema.remove({
-            _id: {$in : id }
+        PermissionSchema.remove({
+            _id: {
+                $in: id
+            }
         }, next);
     }
 
     var findOne = function(id, next) {
-        CategorySchema.findOne({
+        PermissionSchema.findOne({
             _id: id
         }, next);
     }
 
     var findAll = function(next) {
-        CategorySchema.find({}, next);
+        PermissionSchema.find({}, next);
     }
 
     var update = function(id, descript, next) {
 
-        CategorySchema.findOneAndUpdate({
+        PermissionSchema.findOneAndUpdate({
             _id: id
         }, {
             description: descript
@@ -44,4 +46,4 @@ const categoryRepository = function() {
 
 };
 
-module.exports = categoryRepository;
+module.exports = PermissionRepository;

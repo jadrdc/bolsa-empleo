@@ -14,6 +14,49 @@ $('#exampleModal').on('show.bs.modal', function(event) {
 $(document).ready(function() {
 
 
+
+    $("#removeCategory").click(function() {
+        var chkBoxArray = [];
+        $('#id:checked').each(function() {
+
+            chkBoxArray.push($(this).val());
+        });
+        $.post('/deleteCategory', {
+                categoryid: chkBoxArray
+            },
+            function(data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+
+
+    });
+
+
+
+
+
+    $("#removePermission").click(function() {
+        var chkBoxArray = [];
+        $('#id:checked').each(function() {
+
+            chkBoxArray.push($(this).val());
+        });
+        $.post('/deletePermission', {
+                permissionid: chkBoxArray
+            },
+            function(data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+
+
+    });
+
+
+
+
+
+
+
     $(function() {
         var form = $(".login-form");
 
@@ -27,39 +70,22 @@ $(document).ready(function() {
     });
 
 
-    /*
-
-        $("#removebook").click(function() {
-            if (confirm('Desea eliminar estos libros   del Inventario ?')) {
-
-
-                $("input:checkbox[name=id]:checked").each(function() {
-                    var id = $(this).val();
-                    $.post("/removebook", {
-                            _id: id
-                        },
-                        function(data, status) {});
-
-                    $(this).closest('tr').remove();
-
-                });
-            }
-        });*/
-
-
     $("#allcategories").click(function() {
-
-
         $("input:checkbox[name=id]").prop("checked", $('#allcategories').is(':checked'));
-
     });
-
-
 
     $("button:button[name=updateCategory]").click(function() {
         $("input:text[name=category]").empty();
         $("input:text[name=category]").val($(this).closest('tr').children('td:eq(2)').text());
         $("#categoryid").val($(this).closest('tr').children('td:eq(0)').text());
+
+
+    });
+
+    $("button:button[name=updatePermission]").click(function() {
+        $("input:text[name=permission]").empty();
+        $("input:text[name=permission]").val($(this).closest('tr').children('td:eq(2)').text());
+        $("#permissionid").val($(this).closest('tr').children('td:eq(0)').text());
 
 
     });
@@ -74,8 +100,6 @@ $(document).ready(function() {
             $('#exampleModal').modal('toggle');
         });
 
-
-
         $.post("/updateCategory", {
                 category: $("input:text[name=category]").val(),
                 _id: $("#categoryid").val()
@@ -83,10 +107,30 @@ $(document).ready(function() {
             function(data, status) {
                 console.log("Data: " + data + "\nStatus: " + status);
             });
-
-
-
     });
+
+
+
+
+
+
+    $("#updatePermission").click(function() {
+
+        $(function() {
+            $('#exampleModal').modal('toggle');
+        });
+
+        $.post("/updatePermission", {
+                permission: $("input:text[name=permission]").val(),
+                _id: $("#permissionid").val()
+            },
+            function(data, status) {
+                console.log("Data: " + data + "\nStatus: " + status);
+            });
+    });
+
+
+
 
 
 

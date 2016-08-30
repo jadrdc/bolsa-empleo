@@ -5,6 +5,7 @@ const ejs = require('ejs');
 const ejsmate = require('ejs-mate');
 //Routes Import
 const categoryRouting = require('./routes/categoryRouter');
+const permissionRouting = require('./routes/permissionRouter');
 
 const app = new express();
 
@@ -16,9 +17,8 @@ app.use(bodyparser.urlencoded({
     extended: true
 }));
 
-
 app.use(categoryRouting);
-
+app.use(permissionRouting);
 
 app.use(express.static(__dirname+'/static'));
 

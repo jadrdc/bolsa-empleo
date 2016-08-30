@@ -8,7 +8,7 @@ router.get('/addCategory', function(req, resp) {
 router.post('/addCategory', function(req, resp) {
     var categoryController = new CategoryController();
     categoryController.createCategory(req.body.category, function(err, category) {
-        resp.redirect('/addCategory');
+      resp.redirect('/categories');
     });
 });
 
@@ -23,6 +23,14 @@ router.post('/updateCategory', function(req, resp) {
 
 });
 
+router.post('/deleteCategory', function(req, resp) {
+    var categoryController = new CategoryController();
+
+    categoryController.removeCategory(req, function(err, category) {
+        resp.redirect('/categories');
+    });
+
+});
 
 
 
