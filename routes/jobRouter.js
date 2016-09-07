@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const CategoryController = require('../controller/categorycontroller');
+const JobsController = require('../controller/categorycontroller');
 const multer= require('multer');
 const multerOptions= multer({ dest: 'static/uploads/' })
 
@@ -15,7 +16,8 @@ router.get('/addJob', function(req, resp) {
 });
 
 
-router.post('/addJob',multerOptions ,function(req, resp) {
+router.post('/addJob',multerOptions.single('logo') ,function(req, resp) {
+
 
 
 });

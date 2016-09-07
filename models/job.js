@@ -5,7 +5,7 @@ const JobSchema = new Schema({
     company: String,
     jobtime: String,
     logo: String,
-    url: String,
+    url:  {data: Buffer, contentType: String },
     position: String,
     location: String,
     category: {
