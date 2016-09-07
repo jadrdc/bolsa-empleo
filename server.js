@@ -6,6 +6,7 @@ const ejsmate = require('ejs-mate');
 //Routes Import
 const categoryRouting = require('./routes/categoryRouter');
 const permissionRouting = require('./routes/permissionRouter');
+const jobsRouting = require('./routes/jobRouter');
 
 const app = new express();
 
@@ -19,6 +20,8 @@ app.use(bodyparser.urlencoded({
 
 app.use(categoryRouting);
 app.use(permissionRouting);
+app.use(jobsRouting);
+
 
 app.use(express.static(__dirname+'/static'));
 
