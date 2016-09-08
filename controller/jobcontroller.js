@@ -15,6 +15,10 @@ const JobsController = function() {
     }
 
 
+        this.createJob = function(job,next) {
+          job.save(next);
+        }
+
 
 
 

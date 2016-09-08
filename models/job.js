@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt-nodejs");
 
 const JobSchema = new Schema({
     company: String,
     jobtime: String,
-    logo: String,
-    url:  {data: Buffer, contentType: String },
+    url: String,
+    logo: {
+        data: Buffer,
+        contentType: String
+    },
     position: String,
     location: String,
     category: {
@@ -14,10 +18,35 @@ const JobSchema = new Schema({
     },
     description: String,
     email: String,
-    publicvacancy: Boolean
+    publicvacancy: Boolean,
     publisheddate: Date,
     editurl: String,
     token: String
 
 });
+
+
+
+JobSchema.pre('save', function(next) {
+    var job = this;
+
+    if (!job.isModified()) return next();
+
+    bcrypt.genSalt(10, function(err, salt) {
+        if (err) return next();
+        bcrypt.hash(job._id, salt, null, function(err, hash) {
+
+            if (err) return next(err);
+            job.token = hash;
+              job.editurl = '/editJob/'+job._id;
+            next();
+        })
+    });
+});
+
+
+
+
+
+
 module.exports = mongoose.model('Job', JobSchema);

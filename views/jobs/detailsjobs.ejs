@@ -1,0 +1,79 @@
+-
+<% layout('./public/layout') %>
+<div class="bd-example">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Actualizar Categoria</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/updateCategory">
+
+                        <div class="form-group" <input type="hidden" name="categoryid" id="categoryid"  class="form-control" required="true" />
+                </div>
+
+                <div class="form-group">
+                    <label> Categoria</label>
+                    <input type="text" name="category" class="form-control" required="true" />
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="update">Guardar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div class="container padding 2000px ">
+            <h2>Categorias </h2>
+            <table class="table table-hover  table-bordered">
+                <thead>
+                    <tr>
+                      <th>
+                      </th>
+
+                        <th>
+                             <input type="checkbox" id="allcategories" value="">
+                        </th>
+                        <th>Categoria</th>
+
+                        <th>Modificar Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <% category.forEach(function(value,index,arr){ %>
+
+
+                        <tr>
+  <td><label><%= arr[index]._id%></label></td>
+
+                            <td>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" id="id" name="id" value="<%= arr[index]._id %>"></label>
+                                </div>
+                            </td>
+                            <td><label><%= arr[index].description%></label></td>
+                            <td>
+                                <button type="button" class="btn btn-success" id="updateCategory" data-toggle="modal" name="updateCategory" data-target="#exampleModal" data-whatever="@getbootstrap">Modificar Categoria</button>
+                            </td>
+
+                        </tr>
+
+
+
+                        <%  }) %>
+                </tbody>
+            </table>
+            <a class="btn btn-default" href="/addCategory" role="button">Agregar Categoria &raquo;</a>
+            <button class="btn btn-danger" type="button" id="removeCategory"> Eliminar Categoria </button>
+            <a class="btn btn-default" href="/return" role="button">Regresar Pagina Anterior &raquo;</a>
+
+        </div>
