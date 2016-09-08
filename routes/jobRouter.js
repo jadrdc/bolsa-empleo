@@ -19,7 +19,6 @@ router.get('/addJob', function(req, resp) {
 
 
 router.post('/addJob', multerOptions.single('logo'), function(req, resp) {
-
 const controller = new JobsController();
 const job = new Job();
 job.company = req.body.company;
@@ -32,8 +31,7 @@ job.description = req.body.description;
 job.email = req.body.email;
 job.publicvacancy = req.body.optradio;
 job.publisheddate=new Date();
-
-
+job.active=true;
 
 controller.createJob(job, function(err, job) {
     resp.redirect('/addJob');

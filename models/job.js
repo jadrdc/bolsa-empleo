@@ -21,8 +21,8 @@ const JobSchema = new Schema({
     publicvacancy: Boolean,
     publisheddate: Date,
     editurl: String,
-    token: String
-
+    token: String,
+   active : Boolean
 });
 
 
@@ -31,11 +31,9 @@ JobSchema.pre('save', function(next) {
     var job = this;
 
     if (!job.isModified()) return next();
-
     bcrypt.genSalt(10, function(err, salt) {
         if (err) return next();
         bcrypt.hash(job._id, salt, null, function(err, hash) {
-
             if (err) return next(err);
             job.token = hash;
               job.editurl = '/editJob/'+job._id;
