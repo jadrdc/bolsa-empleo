@@ -5,6 +5,8 @@ const multer = require('multer');
 const multerOptions = multer({
     dest: 'static/uploads/'
 });
+const fs= require('fs');
+
 const Job = require('../models/job');
 
 router.get('/addJob', function(req, resp) {
@@ -20,7 +22,9 @@ router.get('/addJob', function(req, resp) {
 
 router.post('/addJob', multerOptions.single('logo'), function(req, resp) {
 const controller = new JobsController();
+
 const job = new Job();
+
 job.company = req.body.company;
 job.jobtime = req.body.jobtime;
 job.url = req.body.url;
@@ -32,6 +36,8 @@ job.email = req.body.email;
 job.publicvacancy = req.body.optradio;
 job.publisheddate=new Date();
 job.active=true;
+job.logo.data=fs.readFileSync(req.file.path);
+job.logo.contentType="image/png";
 
 controller.createJob(job, function(err, job) {
     resp.redirect('/addJob');
